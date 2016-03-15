@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'bbb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'smopqd',
+        'NAME': 'bbb',
         'USER': 'root',
         'PASSWORD': 'qw34rt',
         'HOST': '',
