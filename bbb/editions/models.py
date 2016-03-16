@@ -4,6 +4,7 @@ from django.db import models
 
 class Editions(models.Model):
     edition = models.IntegerField(null=False, blank=False)
+    description = models.TextField(u'Descrição', null=True, blank=True)
     date_start = models.DateTimeField(u'Data de início', auto_now=False,
                                       auto_now_add=False)
     date_finish = models.DateTimeField(u'Data de término', auto_now=False,
