@@ -21,3 +21,10 @@ class Participants(models.Model):
     image = models.ImageField(max_length=255, upload_to=get_upload_to,
                               storage=FILE_SYSTEM, null=False, blank=False)
     status = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return u'%s' % self.name
+
+    class Meta:
+        verbose_name = u'Participante'
+        verbose_name_plural = u'Participantes'
