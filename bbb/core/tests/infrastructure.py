@@ -61,3 +61,6 @@ class TestCaseInfrastructure(TestCase):
             self.participants
         )
 
+        self.wall = __create_wall__(self.edition, self.participants,
+                                    datetime.now(),
+                                    (datetime.now() + timedelta(days=4)))
