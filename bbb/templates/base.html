@@ -1,32 +1,14 @@
-{% load staticfiles %}{% load static %}{% load recaptcha2 %}<!DOCTYPE html>
+{% load staticfiles %}{% load static %}<!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}SMO - Sistema de Manifesto Online{% endblock %}</title>
+    <title>{% block title %}BBB - Big Brother Brasil{% endblock %}</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="icon" type="image/png" href="favicon.html">
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static "_img/favicons/apple-touch-icon-57x57.png" %}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static "_img/favicons/apple-touch-icon-60x60.png" %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static "_img/favicons/apple-touch-icon-72x72.png" %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static "_img/favicons/apple-touch-icon-76x76.png" %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static "_img/favicons/apple-touch-icon-114x114.png" %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static "_img/favicons/apple-touch-icon-120x120.png" %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static "_img/favicons/apple-touch-icon-144x144.png" %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static "_img/favicons/apple-touch-icon-152x152.png" %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static "_img/favicons/apple-touch-icon-180x180.png" %}">
-    <link rel="icon" type="image/png" href="{% static "_img/favicons/favicon-32x32.png" %}" sizes="32x32">
-    <link rel="icon" type="image/png" href="{% static "_img/favicons/android-chrome-192x192.png" %}" sizes="192x192">
-    <link rel="icon" type="image/png" href="{% static "_img/favicons/favicon-96x96.png" %}" sizes="96x96">
-    <link rel="icon" type="image/png" href="{% static "_img/favicons/favicon-16x16.png" %}" sizes="16x16">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-TileImage" content="http://smopqd.com/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-
-    <meta name="description" content="Skydive Resende - Manifesto online para escolas e atletas.">
-    <meta name="keywords" content="skydive, paraquedismo, paraquedas, fly, flight, escola, skydiver">
-    <meta name="author" content="Sistema de Manifesto Online">
-    <meta name="copyright" content="SMO(Sistema de Manifesto Online) - Todos os direitos reservados">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Carlos Sá">
+    <meta name="copyright" content="">
     <link rel="stylesheet" href="{% static "_css/main.css" %}">
 
     {% block css %}
@@ -35,51 +17,21 @@
 
     {% block js_header %}
         <script type="text/javascript"  src="{% static "_js/jquery.js" %}"></script>
-        {% recaptcha_init 'pt-BR' %}
     {% endblock %}
 </head>
-<body data-media-url="{% get_media_prefix %}">
+<body>
     <main role="main">
-        <div class="grid-container grid-parent {% block class %}{% endblock %}">
-            <div class="grid-100 tablet-grid-100 mobile-grid-100">
-                <header>
-                {% include 'desktop/includes/header.html' %}
-                {% block breadcrumb %}
-                {% endblock %}
-                </header>
-            </div>
-
-            {% block main %}
-            {% endblock %}
-        </div>
+        <header>
+            {% include 'desktop/includes/header.html' %}
+        </header>
+        {% block main %}
+        {% endblock %}
         {% block footer %}
-            <div class="footer-bg">
-                <div class="grid-container grid-parent">
-                    <div class="grid-100 tablet-grid-100 mobile-grid-100">
-                        <footer>
-                            <address><strong> Sistema de Manifesto Online</strong><br><abbr title="E-mail"> E-mail:</abbr><a href="mailto:contato@smopqd.com"> contato@smopqd.com</a></address>
-                            <p class="text-center"><i class="glyphicon glyphicon-copyright-mark"></i> 2016 - Todos os direitos reservados</p>
-                        </footer>
-                    </div>
-                </div>
-            </div>
+            {% include 'desktop/includes/footer.html' %}
         {% endblock %}
     </main>
-    {% include 'desktop/includes/modal/change_dz.html' %}
-    {% include 'desktop/includes/modal/term_of_use.html' %}
-    {% include 'desktop/includes/modal/forgot_password.html' %}
-    {% include 'desktop/includes/modal/first_access.html' %}
 
     {% block js_footer %}
-        <script type="text/javascript"  src="{% static "_js/jquery-ui-custom.min.js" %}"></script>
-        <script type="text/javascript"  src="{% static "_js/jquery-ui.js" %}"></script>
-        <script type="text/javascript"  src="{% static "_js/jquery-ui-timepicker.min.js" %}"></script>
-        <script type="text/javascript"  src="{% static "_js/jquery.validate.min.js" %}"></script>
-        <script type="text/javascript"  src="{% static "_js/jquery-cloneya.min.js" %}"></script>
-        <script type="text/javascript"  src="{% static "_js/jquery.maskedinput.js" %}"></script>
-        <script type="text/javascript"  src="{% static "_js/bootstrap.min.js" %}"></script>
-        <script type="text/javascript"  src="{% static "_js/owl.carousel.js" %}"></script>
-        <script type="text/javascript"  src="{% static "_js/main.js" %}"></script>
         <script type="text/javascript" src="{% static "_js/scripts.js" %}"></script>
     {% endblock %}
 </body>
