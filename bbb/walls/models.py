@@ -12,6 +12,12 @@ class Walls(models.Model):
                                        auto_now_add=False)
     status = models.BooleanField(default=True)
 
+    def get_participants(self):
+        participants = []
+        for participant in self.participants.all():
+            participants.append(participant)
+        return participants
+
     def __unicode__(self):
         participants = []
         for participant in self.participants.all():
