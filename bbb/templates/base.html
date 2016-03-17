@@ -24,6 +24,9 @@
         <header>
             {% include 'desktop/includes/header.html' %}
         </header>
+        {% if subeditors %}
+            <div class="subeditors">{{ subeditors }}</div>
+        {% endif %}
         {% block main %}
         {% endblock %}
         {% block footer %}
