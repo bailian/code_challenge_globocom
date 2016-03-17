@@ -1,5 +1,7 @@
+#!/bbb/bin/python
 # coding: utf-8
 from django.db import models
+from datetime import datetime
 from bbb.editions.models import Editions
 from bbb.participants.models import Participants
 
@@ -11,6 +13,17 @@ class Walls(models.Model):
     date_finish = models.DateTimeField(u'Data de término', auto_now=False,
                                        auto_now_add=False)
     status = models.BooleanField(default=True)
+
+    def get_participants(self):
+        participants = []
+        for participant in self.participants.all():
+            participants.append(participant)
+        return participants
+
+    def is_open(self):
+        if self.date_finish > datetime.now():
+            return True
+        return False
 
     def __unicode__(self):
         participants = []
