@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'bbb.editions',
     'bbb.participants',
+    'bbb.core',
 ]
 
 MIDDLEWARE_CLASSES = [
