@@ -1,3 +1,4 @@
+#!/bbb/bin/python
 # coding: utf-8
 from django.db import models
 from bbb.editions.models import Editions
