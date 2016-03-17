@@ -18,4 +18,3 @@ def index(request):
         'wall': wall,
     }
     return render(request, 'desktop/index.html', context)
-
