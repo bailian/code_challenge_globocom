@@ -3,6 +3,7 @@ from django.test import TestCase
 from StringIO import StringIO
 from PIL import Image
 from django.core.files.base import File
+from datetime import datetime, timedelta
 from bbb.participants.models import Participants
 from bbb.editions.models import Editions
 
@@ -45,4 +46,8 @@ class TestCaseInfrastructure(TestCase):
         self.participants.append(__create_participant__(
             'Participante 2', self.get_image_file()))
 
-        # self.edition =
+        self.edition = __create_edition__(
+            16, datetime.now(), (datetime.now() + timedelta(days=90)),
+            self.participants
+        )
+
