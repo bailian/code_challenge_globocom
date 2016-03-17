@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load static %}
+
+{% block title %}BBB - Brig Brother Brasil{% endblock %}
+}
+{% block main %}
+    {% if participants %}
+        <div class="participants">
+            <h1>Todos os Participantes</h1>
+            <ul>
+                {% for partitipant in participants %}
+                    <li>
+                        <div class="participant">
+                            <figure>
+                                <img with="120" height="120" src="{% get_media_prefix %}{{ partitipant.image }}"/>
+                            </figure>
+                            <h3 class="name"><a href="#">{{ partitipant.name }}</a></h3>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}
