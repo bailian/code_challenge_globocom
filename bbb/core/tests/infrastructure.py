@@ -6,6 +6,7 @@ from django.core.files.base import File
 from datetime import datetime, timedelta
 from bbb.participants.models import Participants
 from bbb.editions.models import Editions
+from bbb.walls.models import Walls
 
 
 def __create_participant__(name, avatar, codename=None, description=None,
@@ -23,6 +24,15 @@ def __create_edition__(edition, date_start, date_finish, participants,
     for participant in participants:
         edition.participants.add(participant)
     return edition
+
+
+def __create_wall__(edition, participants, date_start, date_finish,
+                    status=True):
+    wall = Walls.objects.create(edition=edition, date_start=date_start,
+                                date_finish=date_finish, status=status)
+    for participant in participants:
+        wall.participants.add(participant)
+    return wall
 
 
 class TestCaseInfrastructure(TestCase):
