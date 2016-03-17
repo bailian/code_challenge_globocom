@@ -4,12 +4,24 @@ from StringIO import StringIO
 from PIL import Image
 from django.core.files.base import File
 from bbb.participants.models import Participants
+from bbb.editions.models import Editions
 
 
 def __create_participant__(name, avatar, codename=None, description=None,
                            status=True):
     return Participants.objects.create(name=name, codename=codename,
-                                       image=avatar, status=status)
+                                       description=description, image=avatar,
+                                       status=status)
+
+
+def __create_edition__(edition, date_start, date_finish, participants,
+                       description=None, status=True):
+    edition = Editions.objects.create(edition=edition, description=description,
+                                      date_start=date_start,
+                                      date_finish=date_finish, status=status)
+    for participant in participants:
+        edition.participants.add(participant)
+    return edition
 
 
 class TestCaseInfrastructure(TestCase):
@@ -28,12 +40,9 @@ class TestCaseInfrastructure(TestCase):
 
     def setUp(self):
         self.participants = []
-
         self.participants.append(__create_participant__(
             'Participante 1', self.get_image_file()))
         self.participants.append(__create_participant__(
             'Participante 2', self.get_image_file()))
 
-    def test_vai(self):
-        participant = self.participants[0]
-        print participant.name
+        # self.edition =
