@@ -1,6 +1,7 @@
 #!/bbb/bin/python
 # coding: utf-8
 from django.db import models
+from datetime import datetime
 from bbb.editions.models import Editions
 from bbb.participants.models import Participants
 
@@ -18,6 +19,11 @@ class Walls(models.Model):
         for participant in self.participants.all():
             participants.append(participant)
         return participants
+
+    def is_open(self):
+        if self.date_finish > datetime.now():
+            return True
+        return False
 
     def __unicode__(self):
         participants = []
