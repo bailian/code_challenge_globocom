@@ -1,0 +1,41 @@
+{% load staticfiles %}{% load static %}<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}BBB - Big Brother Brasil{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Carlos Sá">
+    <meta name="copyright" content="">
+    <link rel="stylesheet" href="{% static "_css/main.css" %}">
+
+    {% block css %}
+        {{ block.super }}
+    {% endblock %}
+
+    {% block js_header %}
+        <script type="text/javascript"  src="{% static "_js/jquery.js" %}"></script>
+    {% endblock %}
+</head>
+<body>
+    <main role="main">
+        <header>
+            {% include 'desktop/includes/header.html' %}
+        </header>
+        {% if subeditors %}
+            <div class="subeditors">{{ subeditors }}</div>
+        {% endif %}
+        {% block main %}
+        {% endblock %}
+        {% block footer %}
+            {% include 'desktop/includes/footer.html' %}
+        {% endblock %}
+    </main>
+
+    {% block js_footer %}
+        <script type="text/javascript" src="{% static "_js/scripts.js" %}"></script>
+    {% endblock %}
+</body>
+</html>

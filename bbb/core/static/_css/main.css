@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed,figure, figcaption, footer, header, hgroup,menu, nav, output, ruby, section, summary,time, mark, audio, video {margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+body {line-height: 1;}
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,
+q:before, q:after {content: '';content: none;}
+table {border-collapse: collapse;border-spacing: 0;}
+
+body{}
+body main { width: 100%; height: auto; margin: 0 auto; border: 1px solid #000;}
+
+body main header div.header{ width: 100%; height: 60px; display: block; background: #0072BA !important; color: #FFF;}
+body main header div.header h1{ font-family: 'ProximaNovaA-Light'; font-weight: normal; font-size: 38px; text-align: center; padding: 10px 0; }
+body main header div.header h1 a{ color: inherit; text-decoration: none; }
+
+body main .subeditors{background: #005389;color: #fff;height: 15px;padding: 9px 0 11px 0;text-align: center;width: 100%;}
+
+body main .participants{ width: 1024px; min-height: 150px; margin: 0 auto; padding: 50px; display: block; }
+body main .participants h1{ font-size: 32px; margin-bottom: 25px; text-transform: uppercase; }
+body main .participants ul{width: 100%; min-height: inherit; }
+body main .participants ul li{ width: 165px; float: left; padding-right: 15px; list-style: none; }
+body main .participants ul li div.participant{ width: inherit; display: block; }
+body main .participants ul li div.participant img{ margin: 0 auto; overflow: hidden; border-radius: 50%; background-color: #fff; background-size: cover; background-position: center;}
+body main .participants ul li div.participant h3.name{ width: 100%; font-weight: bold; text-align: center; display: inherit; }
+body main .participants ul li div.participant h3 a{ text-decoration: none; font-size: 22px; font-family: opensans-bold,"Helvetica Neue",Arial,sans-serif; letter-spacing: -.04em; line-height: 28px; word-wrap: break-word; color: #0072bc;  }
+
+body main div.footer-bg{ bottom: 0; display: block; }
+.footer .logo{ background-position: 0 0; height: 18px; width: 83px; overflow: hidden; text-indent: -200px; display: block;}
+.common-sprite, .footer .logo{background:url('http://s.glbimg.com/et/gs/static/2015/common/img/logo_globo_rodape.png?83b4f0787ef9') no-repeat}.footer{background-color:#333;font-size:12px;color:#fff}.footer .container{padding-bottom:13px}.footer .copyright{display:inline-block;font-size:10px;padding:5px 0 0 0}.footer a{color:#fff;text-decoration:none}.footer a:hover{text-decoration:underline;color:#fff}.footer li{display:none;border-left:1px solid #666;float:left;padding:2px 11px 0 11px}.footer li:first-child{display:block}.footer .first-line{border-bottom-width:0;border-bottom-style:solid;border-bottom-color:#666;overflow:hidden;padding:11px 0 0 0}.footer .first-line li:first-child{padding:0 11px 0 0;border:none}.footer .first-line li.pushed{border:none;float:right;padding:2px 0 0 0}.footer .logo{background-position:0 0;height:18px;width:83px;overflow:hidden;text-indent:-200px;display:block}.footer .footer-menu{display:none}@media only screen and (min-width:768px){.footer li{display:block}.footer .first-line{border-bottom-width:1px;font-weight:bold;padding:12px 0 10px 0}.footer .copyright{padding:13px 0 0 0;font-size:11px}.footer .footer-menu{display:block;float:right;padding-top:12px;font-size:11px}.footer .footer-menu li{padding:0 5px 0 7px}.footer .footer-menu li:first-child{border:none}.footer .footer-menu .last{padding-right:0}}
+.footer.product-color{ background: #0072BA !important}
+.footer div.row{ margin: 0 auto; max-width: 67.1875rem; with: 100%;}
+#glb-rodape .footer li, #glb-rodape .footer .first-line{ border-color: rgba(255,255,255,0.3);}
+.footer.product-color .first-line{border-bottom-color: rgba(255,255,255,0.25) !important; }
+.footer .first-line{ border-bottom-style: solid; overflow: hidden; }
+.footer.product-color li{ border-left-color: rgba(255,255,255,0.25) !important; }
