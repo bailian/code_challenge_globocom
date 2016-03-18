@@ -13,8 +13,7 @@ blockquote:before, blockquote:after,
 q:before, q:after {content: '';content: none;}
 table {border-collapse: collapse;border-spacing: 0;}
 
-body{}
-body main { width: 100%; height: auto; margin: 0 auto; border: 1px solid #000;}
+body main { width: 100%; height: auto; margin: 0 auto; }
 
 body main header div.header{ width: 100%; height: 60px; display: block; background: #0072BA !important; color: #FFF;}
 body main header div.header h1{ font-family: 'ProximaNovaA-Light'; font-weight: normal; font-size: 38px; text-align: center; padding: 10px 0; }
@@ -22,16 +21,45 @@ body main header div.header h1 a{ color: inherit; text-decoration: none; }
 
 body main .subeditors{background: #005389;color: #fff;height: 15px;padding: 9px 0 11px 0;text-align: center;width: 100%;}
 
-body main .participants{ width: 1024px; min-height: 150px; margin: 0 auto; padding: 50px; display: block; }
-body main .participants h1{ font-size: 32px; margin-bottom: 25px; text-transform: uppercase; }
-body main .participants ul{width: 100%; min-height: inherit; }
-body main .participants ul li{ width: 165px; float: left; padding-right: 15px; list-style: none; }
-body main .participants ul li div.participant{ width: inherit; display: block; }
-body main .participants ul li div.participant img{ margin: 0 auto; overflow: hidden; border-radius: 50%; background-color: #fff; background-size: cover; background-position: center;}
-body main .participants ul li div.participant h3.name{ width: 100%; font-weight: bold; text-align: center; display: inherit; }
-body main .participants ul li div.participant h3 a{ text-decoration: none; font-size: 22px; font-family: opensans-bold,"Helvetica Neue",Arial,sans-serif; letter-spacing: -.04em; line-height: 28px; word-wrap: break-word; color: #0072bc;  }
+body main .content{ width: 1024px; min-height: 150px; margin: 0 auto; }
+body main .content .name{ width: 100%; font-weight: bold; text-align: center; display: inherit; }
+body main .content .name a{ text-decoration: none; font-size: 22px; font-family: opensans-bold,"Helvetica Neue",Arial,sans-serif; letter-spacing: -.04em; line-height: 28px; word-wrap: break-word; color: #0072bc; }
+body main .content .participants{ padding: 50px; display: block; }
+body main .content .participants h1{ font-size: 32px; margin-bottom: 25px; text-transform: uppercase; }
+body main .content .participants ul{ width: 100%; min-height: inherit; display: table; }
+body main .content .participants ul li{ width: 165px; float: left; padding-right: 15px; list-style: none; }
+body main .content .participants ul li div.participant{ width: inherit; display: block; }
+body main .content .participants ul li div.participant img{ margin: 0 auto; overflow: hidden; border-radius: 50%; background-color: #fff; background-size: cover; background-position: center;}
 
-body main div.footer-bg{ bottom: 0; display: block; }
+body main .content .wall{ padding: 30px 50px; display: block; }
+body main .content .wall h1{ font-size: 32px; margin-bottom: 25px; text-transform: uppercase; text-align: center; }
+body main .content .wall ul{ width: 800px; min-height: inherit; margin: 0 auto; margin-top: 50px; display: table; }
+body main .content .wall ul li{ width: 50%; float: left; list-style: none; }
+body main .content .wall li div.wall-participant{ width: 250px; margin: 0 auto; display: block; }
+body main .content .wall li div.wall-participant img{ margin: 0 auto; overflow: hidden; }
+body main .content .wall button{ margin: 0 auto; margin-top: 40px; padding: 5px 10px; background-color: #0072bc; color: #fff; font-size: 32px; text-transform: uppercase; display: block; }
+
+.icon-wall{ background: url('../_img/sprite.png') no-repeat -2px -2px; width: 36px; height: 36px; position: relative; left: 110px; padding: 0 30px 0 0; display: block; text-indent:  -3000px; float: left; }
+.close{ background: url('../_img/sprite.png') no-repeat -1px -100px; width: 39px; height: 39px; position: relative; left: 25px; top: -20px; display: block; text-indent:  -3000px; float: right; }
+.popin{ position: fixed; top: 0; bottom: 0; left: 0; right: 0; margin: auto; width: 620px; height: 530px; border: 5px solid #eaeaea; background: #fff; display: none; font-family: opensans-bold,"Helvetica Neue",Arial,sans-serif;; border-radius: 5px; }
+.popin-header{ height: 50px; padding: 20px 0 15px; text-transform: uppercase; text-align: center; }
+.popin-header span{ font-weight: bold; }
+.popin-header .title{ margin-top: 8px; font-size: 22px; color: #545454; }
+.popin-header:after{content:''; position: absolute; background: url('../_img/bstyle.png') repeat-x; margin: 20px 0 0; width: 95%; height: 10px; left: 15px; float: left; }
+.popin-content{  }
+.popin-content .options{ margin-top: 30px; }
+.popin-content .options ul{ width: 100%; height: auto; padding: 5px 16px; display: table; }
+.popin-content .options ul li{ width: 48%; color: #545454; float: left; list-style: none; }
+.popin-content .options ul li:first-child{ padding-right: 10px; }
+.popin-content .options ul li figure{ height: 252px; width: 277px; margin-top: 5px; border: 2px solid #eaeaea; border-radius: 3px; }
+.popin-content .options ul li figure img{ }
+.popin-content .options ul li div{ font-size: 12px; margin-top: 8px; }
+.popin-content .options ul li span{ font-weight: bold; }
+.popin-content .options hr{ display: block; height: 1px; border: 0; border-top: 2px solid #eaeaea; margin: 1em 0; padding: 0; }
+.popin-content .options button{ width: 201px; height: 42px; margin: 0 auto; margin-top: 20px; padding: 5px 10px; color: #fff; font-size: 14px; display: block; border-radius: 5px; background: #1c8add; /* Old browsers */ background: -moz-linear-gradient(top,  #1c8add 0%, #1780d6 31%, #207cca 38%, #006bc2 100%); /* FF3.6-15 */ background: -webkit-linear-gradient(top,  #1c8add 0%,#1780d6 31%,#207cca 38%,#006bc2 100%); /* Chrome10-25,Safari5.1-6 */ background: linear-gradient(to bottom,  #1c8add 0%,#1780d6 31%,#207cca 38%,#006bc2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1c8add', endColorstr='#006bc2',GradientType=0 ); /* IE6-9 */ }
+.selected{ border: 3px solid #ff9a00 !important; padding: 0; }
+
+body main .footer-bg{ bottom: 0; display: block; position: absolute; width: 100%; left: 0; }
 .footer .logo{ background-position: 0 0; height: 18px; width: 83px; overflow: hidden; text-indent: -200px; display: block;}
 .common-sprite, .footer .logo{background:url('http://s.glbimg.com/et/gs/static/2015/common/img/logo_globo_rodape.png?83b4f0787ef9') no-repeat}.footer{background-color:#333;font-size:12px;color:#fff}.footer .container{padding-bottom:13px}.footer .copyright{display:inline-block;font-size:10px;padding:5px 0 0 0}.footer a{color:#fff;text-decoration:none}.footer a:hover{text-decoration:underline;color:#fff}.footer li{display:none;border-left:1px solid #666;float:left;padding:2px 11px 0 11px}.footer li:first-child{display:block}.footer .first-line{border-bottom-width:0;border-bottom-style:solid;border-bottom-color:#666;overflow:hidden;padding:11px 0 0 0}.footer .first-line li:first-child{padding:0 11px 0 0;border:none}.footer .first-line li.pushed{border:none;float:right;padding:2px 0 0 0}.footer .logo{background-position:0 0;height:18px;width:83px;overflow:hidden;text-indent:-200px;display:block}.footer .footer-menu{display:none}@media only screen and (min-width:768px){.footer li{display:block}.footer .first-line{border-bottom-width:1px;font-weight:bold;padding:12px 0 10px 0}.footer .copyright{padding:13px 0 0 0;font-size:11px}.footer .footer-menu{display:block;float:right;padding-top:12px;font-size:11px}.footer .footer-menu li{padding:0 5px 0 7px}.footer .footer-menu li:first-child{border:none}.footer .footer-menu .last{padding-right:0}}
 .footer.product-color{ background: #0072BA !important}
