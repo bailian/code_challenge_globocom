@@ -9,6 +9,8 @@ from bbb.walls.models import Walls
 def index(request):
     try:
         wall = Walls.objects.get(status=True)
+        if not wall.is_open():
+            wall = None
     except Walls.DoesNotExist:
         wall = None
 
