@@ -19,6 +19,6 @@ def index(request):
         'subeditors': 'Participantes',
         'participants': Participants.objects.filter(status=True),
         'wall': wall,
-        'form': VotingForm(),
+        'form': VotingForm(wall),
     }
     return render(request, 'desktop/index.html', context)
