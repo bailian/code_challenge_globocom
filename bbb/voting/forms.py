@@ -5,8 +5,8 @@ from bbb.voting.models import Voting
 
 
 class VotingForm(forms.Form):
-    wall = forms.HiddenInput()
-    vote = forms.HiddenInput()
+    wall = forms.CharField(widget=forms.HiddenInput())
+    vote = forms.CharField(widget=forms.HiddenInput())
 
     class Meta:
         model = Voting
