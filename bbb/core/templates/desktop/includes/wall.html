@@ -22,6 +22,11 @@
         <div class="popin-header"><span class="icon-wall">Paredão</span><div class="title">quem deve ser <span>eliminado</span>?</div></div>
         <div class="popin-content">
             <div class="options">
+                <form name="voting" method="post">
+                    {% csrf_token %}
+                    {{ form.wall }}
+                    {{ form.vote }}
+                </form>
                 <ul>
                     {% for partitipant in wall.get_participants %}
                         <li data-participant="{{ partitipant.pk }}">
