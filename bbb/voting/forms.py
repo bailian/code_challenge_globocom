@@ -1,10 +1,10 @@
-#!/bbb/bin/python
+#!/usr/bin/python
 # coding: utf-8
 from django import forms
 from bbb.voting.models import Voting
 
 
-class VotingForm(forms.Form):
+class VotingForm(forms.ModelForm):
     def __init__(self, wall, *args, **kwargs):
         super(VotingForm, self).__init__(*args, **kwargs)
         self.fields['wall'].initial = wall.pk
@@ -14,3 +14,4 @@ class VotingForm(forms.Form):
 
     class Meta:
         model = Voting
+        fields = ['wall', 'vote', ]
