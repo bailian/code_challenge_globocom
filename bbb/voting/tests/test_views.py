@@ -10,17 +10,13 @@ class VotingTests(TestCaseInfrastructure):
         super(VotingTests, self).setUp()
 
         self.vote = {
-            'wall': self.wall.pk,
-            'vote': self.participants[0].pk,
+            'wall': int(self.wall.pk),
+            'vote': int(self.wall.participants.all()[0].pk),
         }
 
     def test_vote(self):
-        response = self.client.post(reverse('voting:vote'), self.vote)
+        response = self.client.post(reverse('voting:voting'), self.vote)
         vote_latest = Voting.objects.latest('pk')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(self.vote['wall'], vote_latest.wall)
-        self.assertEqual(self.vote['vote'], vote_latest.vote)
-
-
-
-
+        self.assertEqual(self.vote['wall'], vote_latest.wall.pk)
+        self.assertEqual(self.vote['vote'], vote_latest.vote.pk)
