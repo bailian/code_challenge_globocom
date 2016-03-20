@@ -1,4 +1,4 @@
-#!/bbb/bin/python
+#!/usr/bin/python
 # coding: utf-8
 from django.db import models
 from bbb.walls.models import Walls
@@ -10,7 +10,7 @@ class Voting(models.Model):
     vote = models.ForeignKey(Participants)
     date_vote = models.DateTimeField(u'Data do voto', auto_now_add=True)
     status = models.BooleanField(default=True)
-
+    
     def __unicode__(self):
         return u'%s' % self.vote
 
