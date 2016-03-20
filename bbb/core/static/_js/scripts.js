@@ -8,49 +8,10 @@ $(document).ready(function(){
         e.preventDefault();
         $('div.options ul li figure').removeClass('selected');
         $(this).find('figure').addClass('selected');
+        $('#id_vote').val($(this).attr('data-participant'));
     });
 
-    $('#popin-vote').on('click', function(e){
-        e.preventDefault();
-        $('div.options').hide();
-        $('div.popin').addClass('popin-result');
-        $('div.results').show();
-        //$.ajax({
-        //    url: "/cities/" + state,
-        //
-        //    success: function(data){
-        //
-        //    },
-        //    error: function(data){
-        //
-        //    }
-        //});
-
-        //google.charts.load("current", {packages:["corechart"]});
-        //google.charts.setOnLoadCallback(drawChart);
-        //function drawChart() {
-        //    var data = google.visualization.arrayToDataTable([
-        //        ['Task', 'Hours per Day'],
-        //        ['Work',     11],
-        //        ['Eat',      2],
-        //        //['Commute',  2],
-        //        //['Watch TV', 2],
-        //        //['Sleep',    7]
-        //    ]);
-        //
-        //    var options = {
-        //        title: '',
-        //        pieHole: 0.4,
-        //        legend: {
-        //            position:'none',
-        //        },
-        //        pieSliceText: 'percentage',
-        //    };
-        //
-        //    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        //    chart.draw(data, options);
-        //}
-
+    $.buildGraph = function(data){
         var chart = new Chartist.Pie('.ct-chart',
             {
                 series: [160, 60 ],
@@ -114,10 +75,36 @@ $(document).ready(function(){
                 data.element.animate(animationDefinition, true);
             }
         });
+    };
+
+    $('#popin-vote').on('click', function(e){
+        e.preventDefault();
+        if($('#id_vote').val() != ''){
+            $('div.options').hide();
+            $('div.popin').addClass('popin-result');
+            $('div.results').show();
+            $.ajax({
+                url: "/voting/",
+                type: 'post',
+                data: $('form[name="voting"]').serialize(),
+                success: function(data){
+                    if(data.status){
+                        $.buildGraph(data);
+                        $('div.result p').text("<span>Parabéns!</span> Seu voto para <span>"+ data.participant.name +"</span> foi enviado com sucesso.");
+                    }else{
+                        $('div.result p').text(data.msg);
+                    }
+                },
+                error: function(data){
+                    console.log(data);
+                }
+            });
+        }
     });
 
     $('.close').on('click', function(e){
         e.preventDefault();
+        $('div.options').find('figure').removeClass('selected');
         $('div.options').show();
         $('div.results').hide();
         $('div.popin').removeClass('popin-result');
