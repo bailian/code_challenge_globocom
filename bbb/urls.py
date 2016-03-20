@@ -24,5 +24,6 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += [
     url(r'^admin/', admin.site.urls),
 
+    url(r'^', include('bbb.voting.urls')),
     url(r'^', include('bbb.core.urls')),
 ]
