@@ -1,22 +1,57 @@
 {% load staticfiles %}
 {% load static %}
-<div class="wall">
-    {% if wall %}
-        <div class="wall-participants">
-            <h1>Paredão</h1>
-            <ul>
-                {% for partitipant in wall.participants %}
-                    <li>
-                        <div class="wall-participant">
+{% if wall %}
+    <div class="wall">
+        <h1>Paredão da semana</h1>
+        <ul>
+            {% for partitipant in wall.get_participants %}
+                <li>
+                    <div class="wall-participant">
+                        <figure>
+                            <img with="180" height="180" src="{% get_media_prefix %}{{ partitipant.image }}"/>
+                        </figure>
+                        <h3 class="name"><a href="#">{{ partitipant.name }}</a></h3>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <button id="wall-vote">vote</button>
+    </div>
+    <div class="popin">
+        <span class="close">Close</span>
+        <div class="popin-header"><span class="icon-wall">Paredão</span><div class="title">quem deve ser <span>eliminado</span>?</div></div>
+        <div class="popin-content">
+            <div class="options">
+                <form name="voting" method="post">
+                    {% csrf_token %}
+                    {{ form.wall }}
+                    {{ form.vote }}
+                </form>
+                <ul>
+                    {% for partitipant in wall.get_participants %}
+                        <li data-participant="{{ partitipant.pk }}">
+                            <span>{{ partitipant.name }}</span>
                             <figure>
-                                <img with="120" height="120" src="{% get_media_prefix %}{{ partitipant.image }}"/>
+                                <img with="277" height="252" src="{% get_media_prefix %}{{ partitipant.image }}"/>
                             </figure>
-                            <h3 class="name"><a href="#">{{ partitipant.name }}</a></h3>
-                        </div>
+                            <div>Para eliminar o <span>{{ partitipant.name }}</span> pelo telefone disque <span>0800-123-00{{ forloop.counter }}</span> ou mande um SMS para <span>800{{ forloop.counter }}</span></div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <hr>
+                <button id="popin-vote">Envie seu voto agora</button>
+            </div>
+            <div class="results">
+                <p><span>Parabéns!</span> Seu voto para <span>Participante 1</span> foi enviado com sucesso.</p>
+                <ul>
+                    {% for partitipant in wall.get_participants %}
+                    <li>
+                        <figure><img with="277" height="252" src="{% get_media_prefix %}{{ partitipant.image }}"/></figure>
                     </li>
-                {% endfor %}
-            </ul>
-            <button>Participe, vote</button>
+                    {% endfor %}
+                </ul>
+                <div class="ct-chart ct-perfect-fourth"></div>
+            </div>
         </div>
-    {% endif %}
-</div>
+    </div>
+{% endif %}
