@@ -24,3 +24,9 @@ class TestWalls(TestCaseInfrastructure):
         wall_close = self.wall_close.is_open()
         self.assertTrue(wall_open)
         self.assertFalse(wall_close)
+
+    def test_get_time_to_finish(self):
+        expected = '<h3>Faltam <span class="time">4 dias</span> para ' \
+                   'encerrar a votação</span></h3>'
+        response = self.wall.get_time_to_finish()
+        self.assertEqual(expected, response)
