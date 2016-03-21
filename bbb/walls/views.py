@@ -2,6 +2,7 @@
 # coding: utf-8
 from django.shortcuts import render
 import logging
+from django.db.models import Count
 from bbb.walls.models import Walls
 
 logger = logging.getLogger(__name__)
@@ -64,9 +65,19 @@ def get_all_votes_participant(request, wall_id=None, participant_id=None):
 
 def get_all_votes_per_hours(request):
     msg = None
+    result_walls = {'walls': []}
 
     walls = Walls.objects.filter(status=True)
-
+    for wall in walls:
+        # vote_per_hours = wall.voting_set.extra({
+        #     'date': "EXTRACT(\'day\' FROM \"date_vote\")",
+        #     'hour': "EXTRACT(\'hour\' FROM \"date_vote\")"
+        # }).values('date', 'hour').order_by('date', 'hour').annotate(Count('id'))
+        vote_per_hours = wall.voting_set.extra({
+            'date': "DATEPART(\'day\', \"date_vote\")",
+            'hour': "DATEPART(\'hour\', \"date_vote\")"
+        }).values('date', 'hour').order_by('date', 'hour').annotate(Count('id'))
+        print vote_per_hours
 
     context = {
         'subeditors': 'Votos do participante nos paredões por hora',
