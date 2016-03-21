@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 from bbb.editions.models import Editions
 from bbb.participants.models import Participants
+from datetime import datetime, timedelta
 
 
 class Walls(models.Model):
