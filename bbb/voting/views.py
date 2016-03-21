@@ -64,6 +64,7 @@ def voting(request):
     response = {
         'msg': msg,
         'participant': vote.name,
+        'result': wall.get_result(),
         'status': status,
     }
     return HttpResponse(json.dumps(response), 'application/json')
