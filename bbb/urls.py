@@ -25,5 +25,6 @@ urlpatterns += [
     url(r'^admin/', admin.site.urls),
 
     url(r'^', include('bbb.voting.urls')),
+    url(r'^', include('bbb.walls.urls')),
     url(r'^', include('bbb.core.urls')),
 ]
