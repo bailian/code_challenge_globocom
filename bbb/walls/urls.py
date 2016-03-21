@@ -6,6 +6,10 @@ from bbb.walls import views
 app_name = 'wall'
 
 urlpatterns = [
-    url(r'^all_votes/(?P<wall_id>\d+)?/?$', views.get_all_votes,
+    url(r'^relatorio-paredao/(?P<wall_id>\d+)/?$', views.get_all_votes,
         name='get_all_votes'),
+    url(
+        r'^relatorio-participante/(?P<wall_id>\d+)/(?P<participant_id>\d+)/?$',
+        views.get_all_votes_participant, name='get_all_votes_participant'
+    ),
 ]
