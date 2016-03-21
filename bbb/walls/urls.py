@@ -12,4 +12,6 @@ urlpatterns = [
         r'^relatorio-participante/(?P<wall_id>\d+)/(?P<participant_id>\d+)/?$',
         views.get_all_votes_participant, name='get_all_votes_participant'
     ),
+    url(r'^relatorio-paredoes-hora/?$', views.get_all_votes_per_hours,
+        name='get_all_votes_per_hours'),
 ]
