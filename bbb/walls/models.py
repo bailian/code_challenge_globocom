@@ -22,7 +22,7 @@ class Walls(models.Model):
         return participants
 
     def is_open(self):
-        if self.date_finish > datetime.now():
+        if self.date_finish > timezone.now():
             return True
         return False
 
@@ -35,7 +35,7 @@ class Walls(models.Model):
 
     def get_time_to_finish(self):
         if self.is_open():
-            elapsedTime = self.date_finish - datetime.now()
+            elapsedTime = self.date_finish - timezone.now()
             if elapsedTime.days == 0:
                 days, hours, minutes, seconds = \
                     self.convert_timedelta(elapsedTime)

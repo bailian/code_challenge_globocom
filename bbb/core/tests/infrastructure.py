@@ -4,6 +4,7 @@ from StringIO import StringIO
 from PIL import Image
 from django.core.files.base import File
 from datetime import datetime, timedelta
+from django.utils import timezone
 from bbb.participants.models import Participants
 from bbb.editions.models import Editions
 from bbb.walls.models import Walls
@@ -62,13 +63,13 @@ class TestCaseInfrastructure(TestCase):
             'Participante 2', self.get_image_file()))
 
         self.edition = __create_edition__(
-            16, datetime.now(), (datetime.now() + timedelta(days=90)),
+            16, timezone.now(), (timezone.now() + timedelta(days=90)),
             self.participants
         )
 
         self.wall = __create_wall__(self.edition, self.participants,
-                                    datetime.now(),
-                                    (datetime.now() + timedelta(days=4)))
+                                    timezone.now(),
+                                    (timezone.now() + timedelta(days=4)))
 
         # Votes
         for i in range(1, 20):

@@ -11,10 +11,14 @@ $(document).ready(function(){
         $('#id_vote').val($(this).attr('data-participant'));
     });
 
-    $.buildGraph = function(data){
+    $.buildGraph = function(data_voting){
+        var data_series = [];
+        for(var i = 0; i < data_voting.result.participants.length; i++){
+            data_series.push(data_voting.result.participants[i].votes);
+        }
         var chart = new Chartist.Pie('.ct-chart',
             {
-                series: [160, 60 ],
+                series: data_series,
                 labels: ['', '']
             }, {
                 width: 360,
@@ -22,7 +26,7 @@ $(document).ready(function(){
                 donut: true,
                 donutWidth: 30,
                 startAngle: 210,
-                total: 260,
+                total: data_voting.result.total_votes,
                 showLabel: false,
                 plugins: [
                     Chartist.plugins.fillDonut({
@@ -33,7 +37,8 @@ $(document).ready(function(){
                                 //offsetY : 0,
                                 //offsetX: 0
                             }, {
-                                content: '<h3>Faltam 10 dias<span class="small">mph</span></h3>',
+                                //content: '<h3>Faltam 10 dias<span class="small">mph</span></h3>',
+                                content: data_voting.time_to_finish,
                                 position: 'center',
                                 offsetY : 0,
                                 offsetX: 0
