@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from bbb.participants.models import Participants
 from bbb.editions.models import Editions
 from bbb.walls.models import Walls
+from bbb.voting.models import Voting
 
 
 def __create_participant__(name, avatar, codename=None, description=None,
@@ -33,6 +34,10 @@ def __create_wall__(edition, participants, date_start, date_finish,
     for participant in participants:
         wall.participants.add(participant)
     return wall
+
+
+def __created_vote__(wall, participant):
+    Voting.objects.create(wall=wall, vote=participant)
 
 
 class TestCaseInfrastructure(TestCase):
@@ -64,3 +69,10 @@ class TestCaseInfrastructure(TestCase):
         self.wall = __create_wall__(self.edition, self.participants,
                                     datetime.now(),
                                     (datetime.now() + timedelta(days=4)))
+
+        # Votes
+        for i in range(1, 20):
+            __created_vote__(self.wall, self.participants[0])
+
+        for i in range(1, 5):
+            __created_vote__(self.wall, self.participants[1])
