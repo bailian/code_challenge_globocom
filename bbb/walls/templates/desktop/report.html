@@ -1,0 +1,22 @@
+{% load staticfiles %}
+{% load static %}
+{% if wall %}
+    <div class="wall">
+        <h1>Paredão</h1>
+        <ul>
+            {% for partitipant in wall.get_participants %}
+                <li>
+                    <div class="wall-participant">
+                        <figure>
+                            <img with="180" height="180" src="{% get_media_prefix %}{{ partitipant.image }}"/>
+                        </figure>
+                        <h3 class="name"><a href="#">{{ partitipant.name }}</a></h3>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% if type_report == 'all_votes' %}
+    {% include 'desktop/includes/report_wall.html' %}
+{% endif %}
