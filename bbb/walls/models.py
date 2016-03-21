@@ -22,7 +22,7 @@ class Walls(models.Model):
         return participants
 
     def is_open(self):
-        if self.date_finish > datetime.now():
+        if self.date_finish > timezone.now():
             return True
         return False
 
@@ -35,17 +35,23 @@ class Walls(models.Model):
 
     def get_time_to_finish(self):
         if self.is_open():
-            elapsedTime = self.date_finish - datetime.now()
+            elapsedTime = self.date_finish - timezone.now()
             if elapsedTime.days == 0:
                 days, hours, minutes, seconds = \
                     self.convert_timedelta(elapsedTime)
-                return u'<h3>Faltam <span class="time">%s:%s:%s</span> para ' \
-                   u'encerrar a votação</span></h3>' % (hours, minutes, seconds)
+                return u'<div><span>Faltam</span><span class="time">' \
+                       u'%s:%s:%s</span><span> para encerrar a votação' \
+                       u'</span></div>' % (hours, minutes, seconds)
             else:
-                return u'<h3>Faltam <span class="time">%s dias</span> para ' \
-                       u'encerrar a votação</span></h3>' % elapsedTime.days
+                if elapsedTime.days == 1:
+                    txt_days = u'dia'
+                else:
+                    txt_days = u'dias'
+                return u'<div><span>Faltam</span><span class="time">' \
+                       u'%s %s</span><span>para encerrar a votação' \
+                       u'</span></div>' % (elapsedTime.days, txt_days)
 
-        return u'<h3>Votação encerrada.</h3>'
+        return u'<div>Votação encerrada.</div>'
 
     def get_result(self):
         result = {
