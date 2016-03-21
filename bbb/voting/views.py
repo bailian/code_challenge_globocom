@@ -15,14 +15,14 @@ def voting(request):
     vote = None
     status = False
 
-    try:
-        wall = Walls.objects.get(status=True)
-        if not wall.is_open():
-            wall = None
-    except Walls.DoesNotExist:
-        wall = None
-
     if request.method == 'POST':
+        try:
+            wall = Walls.objects.get(pk=request.POST['wall'], status=True)
+            if not wall.is_open():
+                wall = None
+        except Walls.DoesNotExist:
+            wall = None
+
         form = VotingForm(wall, request.POST)
 
         if form.is_valid():
@@ -30,11 +30,11 @@ def voting(request):
             try:
                 vote = Participants.objects.get(pk=int(data['vote']))
             except Participants.DoesNotExist:
-                msg = 'Participante não encontrado.'
                 log = 'Falha ao buscar o participante com  o id: %s no ' \
                       'paredão: %s.' % (int(data['vote']), wall.pk)
                 logger.error(log)
-            if vote:
+
+            if vote and wall:
                 try:
                     voting = Voting(
                         wall=wall,
@@ -45,15 +45,27 @@ def voting(request):
                     msg = 'Voto cadastrado com sucesso.'
                 except Exception as e:
                     status = False
-                    msg = 'Falha ao salvar o voto. Por favor, ente mais tarde.'
-                    log = 'Falha na tentativa de efetuar o voto no participante ' \
-                          'com  o id: %s no paredão: %s. Error: %s' \
+                    msg = 'Não foi possível computar o voto. Por favor, ' \
+                          'tente mais tarde.'
+                    log = 'Falha na tentativa de efetuar o voto no ' \
+                          'participante com  o id: %s no paredão: %s. ' \
+                          'Error: %s' \
                           % (request.POST['vote'], request.POST['wall'], e)
                     logger.error(log)
+            else:
+                msg = 'Não foi possível computar o voto. Por favor, tente ' \
+                      'mais tarde.'
+                log = 'Falha na tentativa de efetuar o voto no participante ' \
+                      'com  o id: %s no paredão: %s.' % (
+                    request.POST['vote'], request.POST['wall']
+                )
+                logger.error(log)
 
     response = {
         'msg': msg,
-        'participant': vote,
+        'participant': vote.name,
+        'result': wall.get_result(),
+        'time_to_finish': wall.get_time_to_finish(),
         'status': status,
     }
     return HttpResponse(json.dumps(response), 'application/json')

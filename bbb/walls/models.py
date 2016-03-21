@@ -2,6 +2,7 @@
 # coding: utf-8
 from django.db import models
 from django.utils import timezone
+from datetime import datetime
 from bbb.editions.models import Editions
 from bbb.participants.models import Participants
 
@@ -24,6 +25,44 @@ class Walls(models.Model):
         if self.date_finish > timezone.now():
             return True
         return False
+
+    def convert_timedelta(duration):
+        days, seconds = duration.days, duration.seconds
+        hours = days * 24 + seconds // 3600
+        minutes = (seconds % 3600) // 60
+        seconds = (seconds % 60)
+        return days, hours, minutes, seconds
+
+    def get_time_to_finish(self):
+        if self.is_open():
+            elapsedTime = self.date_finish - timezone.now()
+            if elapsedTime.days == 0:
+                days, hours, minutes, seconds = \
+                    self.convert_timedelta(elapsedTime)
+                return u'<h3>Faltam <span class="time">%s:%s:%s</span> para ' \
+                   u'encerrar a votação</span></h3>' % (hours, minutes, seconds)
+            else:
+                return u'<h3>Faltam <span class="time">%s dias</span> para ' \
+                       u'encerrar a votação</span></h3>' % elapsedTime.days
+
+        return u'<h3>Votação encerrada.</h3>'
+
+    def get_result(self):
+        result = {
+            'participants': [],
+            'total_votes': 0,
+        }
+
+        for participant in self.participants.all():
+            votes = self.voting_set.filter(wall=self.pk, vote=participant,
+                                          status=True)
+            result['participants'].append(
+                {'name': participant.name, 'votes': len(votes)}
+            )
+        result['total_votes'] = len(
+            self.voting_set.filter(wall=self.pk, status=True)
+        )
+        return result
 
     def __unicode__(self):
         participants = []
