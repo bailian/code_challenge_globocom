@@ -2,9 +2,11 @@
 # coding: utf-8
 from django.db import models
 from django.utils import timezone
+from datetime import datetime, timedelta
+import json
 from bbb.editions.models import Editions
 from bbb.participants.models import Participants
-from datetime import datetime, timedelta
+# from bbb.voting.models import Voting
 
 
 class Walls(models.Model):
@@ -46,6 +48,23 @@ class Walls(models.Model):
                        u'encerrar a votação</span></h3>' % elapsedTime.days
 
         return u'<h3>Votação encerrada.</h3>'
+
+    def get_result(self):
+        result = {
+            'participants': [],
+            'total_votes': 0,
+        }
+
+        for participant in self.participants.all():
+            votes = self.voting_set.filter(wall=self.pk, vote=participant,
+                                          status=True)
+            result['participants'].append(
+                {'name': participant.name, 'votes': len(votes)}
+            )
+        result['total_votes'] = len(
+            self.voting_set.filter(wall=self.pk, status=True)
+        )
+        return result
 
     def __unicode__(self):
         participants = []
