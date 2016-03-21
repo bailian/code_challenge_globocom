@@ -35,10 +35,14 @@ class TestWalls(TestCaseInfrastructure):
     def test_get_result(self):
         expected = {
             'participants': [],
-            'total_votes': 0
+            'total_votes': 23,
         }
         for participant in self.wall.participants.all():
-            part = {'name': participant.name, 'votes': 3}
+            if participant.name == 'Participante 1':
+                votes = 19
+            else:
+                votes = 4
+            part = {'name': participant.name, 'votes': votes}
             expected['participants'].append(part)
         result = self.wall.get_result()
-        self.assertJSONEqual(result, json.dumps(expected))
+        self.assertDictEqual(expected, result)
