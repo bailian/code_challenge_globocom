@@ -31,8 +31,36 @@ def get_all_votes(request, wall_id=None):
     return render(request, 'desktop/report.html', context)
 
 
-def get_all_votes_participant(request, wall=None, participant=None):
-    pass
+def get_all_votes_participant(request, wall_id=None, participant_id=None):
+    msg = None
+    participant = None
+    total_votes = 0
+    wall = None
+
+    if wall_id:
+        try:
+            wall = Walls.objects.get(pk=wall_id)
+        except Walls.DoesNotExist:
+            msg = 'Paredão não encontrado.'
+
+    if participant_id and wall:
+        votes = wall.voting_set.filter(vote=participant_id, status=True)
+        total_votes = len(votes)
+        if total_votes > 0:
+            participant = votes[0].vote.name
+        else:
+            msg = "Não existe voto para o participante."
+
+    context = {
+        'subeditors': 'Votos do participante no paredão',
+        'participant': participant,
+        'total_votes': total_votes,
+        'wall': wall,
+        'type_report': 'all_votes_participant',
+        'msg': msg,
+    }
+    return render(request, 'desktop/report.html', context)
+
 
 
 def get_all_votes_per_hours(request, wall=None):
