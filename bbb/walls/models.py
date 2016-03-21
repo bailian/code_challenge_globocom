@@ -2,11 +2,9 @@
 # coding: utf-8
 from django.db import models
 from django.utils import timezone
-from datetime import datetime, timedelta
-import json
+from datetime import datetime
 from bbb.editions.models import Editions
 from bbb.participants.models import Participants
-# from bbb.voting.models import Voting
 
 
 class Walls(models.Model):
@@ -24,7 +22,7 @@ class Walls(models.Model):
         return participants
 
     def is_open(self):
-        if self.date_finish > timezone.now():
+        if self.date_finish > datetime.now():
             return True
         return False
 
