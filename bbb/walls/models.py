@@ -1,7 +1,7 @@
 #!/bbb/bin/python
 # coding: utf-8
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
 from bbb.editions.models import Editions
 from bbb.participants.models import Participants
 
@@ -21,7 +21,7 @@ class Walls(models.Model):
         return participants
 
     def is_open(self):
-        if self.date_finish > datetime.now():
+        if self.date_finish > timezone.now():
             return True
         return False
 

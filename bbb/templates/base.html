@@ -10,13 +10,13 @@
     <meta name="author" content="Carlos Sá">
     <meta name="copyright" content="">
     <link rel="stylesheet" href="{% static "_css/main.css" %}">
-
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     {% block css %}
         {{ block.super }}
     {% endblock %}
 
     {% block js_header %}
-        <script type="text/javascript"  src="{% static "_js/jquery.js" %}"></script>
+        <script type="text/javascript"  src="{% static "_js/jquery-1.12.2.min.js" %}"></script>
     {% endblock %}
 </head>
 <body>
@@ -35,6 +35,8 @@
     </main>
 
     {% block js_footer %}
+        <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+        <script src="{% static "_js/chartist-plugin-fill-donut.js" %}"></script>
         <script type="text/javascript" src="{% static "_js/scripts.js" %}"></script>
     {% endblock %}
 </body>
