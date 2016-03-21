@@ -33,11 +33,8 @@ $(document).ready(function(){
                         items: [
                             {
                                 content: '',
-                                //position: 'center',
-                                //offsetY : 0,
-                                //offsetX: 0
-                            }, {
-                                //content: '<h3>Faltam 10 dias<span class="small">mph</span></h3>',
+                            },
+                            {
                                 content: data_voting.time_to_finish,
                                 position: 'center',
                                 offsetY : 0,
