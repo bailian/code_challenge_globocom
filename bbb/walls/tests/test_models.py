@@ -1,5 +1,6 @@
 #!/bbb/bin/python
 # coding: utf-8
+from django.utils import timezone
 from datetime import datetime, timedelta
 from bbb.core.tests.infrastructure import TestCaseInfrastructure, \
     __create_wall__
@@ -12,8 +13,8 @@ class TestWalls(TestCaseInfrastructure):
 
         self.wall_close = __create_wall__(
             self.edition, self.participants,
-            (datetime.now() - timedelta(days=2)),
-            (datetime.now() - timedelta(days=1))
+            (timezone.now() - timedelta(days=2)),
+            (timezone.now() - timedelta(days=1))
         )
 
     def test_get_participants(self):
