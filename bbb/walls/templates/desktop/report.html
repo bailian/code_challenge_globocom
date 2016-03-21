@@ -28,6 +28,8 @@
         {% endif %}
         {% if type_report == 'all_votes' %}
             {% include 'desktop/includes/report_wall.html' %}
+        {% elif type_report == 'all_votes_participant' %}
+            {% include 'desktop/includes/report_wall_participant.html' %}
         {% endif %}
     </div>
 {% endblock %}
