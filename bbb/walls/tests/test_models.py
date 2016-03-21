@@ -3,6 +3,7 @@
 from datetime import datetime, timedelta
 from bbb.core.tests.infrastructure import TestCaseInfrastructure, \
     __create_wall__
+import json
 
 
 class TestWalls(TestCaseInfrastructure):
@@ -30,3 +31,14 @@ class TestWalls(TestCaseInfrastructure):
                    u'encerrar a votação</span></h3>'
         response = self.wall.get_time_to_finish()
         self.assertEqual(expected, response)
+
+    def test_get_result(self):
+        expected = {
+            'participants': [],
+            'total_votes': 0
+        }
+        for participant in self.wall.participants.all():
+            part = {'name': participant.name, 'votes': 3}
+            expected['participants'].append(part)
+        result = self.wall.get_result()
+        self.assertJSONEqual(result, json.dumps(expected))
