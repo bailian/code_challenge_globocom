@@ -8,6 +8,8 @@ logger = logging.getLogger(__name__)
 
 
 def get_all_votes(request, wall_id=None):
+    msg = None
+
     if wall_id:
         try:
             wall = Walls.objects.get(pk=wall_id)
@@ -23,6 +25,7 @@ def get_all_votes(request, wall_id=None):
         'total_votes': total_votes,
         'wall': wall,
         'type_report': 'all_votes',
+        'msg': msg,
     }
     return render(request, 'desktop/report.html', context)
 
