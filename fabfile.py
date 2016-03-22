@@ -193,18 +193,14 @@ def deploy():
         maintenance_up()
 
     checkout_latest()
-    gzip_assets()
-    deploy_to_s3()
-    refresh_widgets()
-
 
 
 def maintenance_up():
     """
     Install the Nginx maintenance configuration.
     """
-    sudo('ln -s %(apache_config_path)s/sites-available/maintenance.conf '
-         '%(apache_config_path)s/sites-enabled/maintenance.conf')
+    sudo('ln -s %(nginx_config_path)s/sites-available/maintenance.conf '
+         '%(nginx_config_path)s/sites-enabled/maintenance.conf')
     sudo('rm -f /etc/nginx/sites-enabled/nginx-bbb.conf')
     reboot()
 
