@@ -26,7 +26,7 @@ class Walls(models.Model):
             return True
         return False
 
-    def convert_timedelta(duration):
+    def convert_timedelta(self, duration):
         days, seconds = duration.days, duration.seconds
         hours = days * 24 + seconds // 3600
         minutes = (seconds % 3600) // 60
@@ -36,9 +36,8 @@ class Walls(models.Model):
     def get_time_to_finish(self):
         if self.is_open():
             elapsedTime = self.date_finish - timezone.now()
+            days, hours, minutes, seconds = self.convert_timedelta(elapsedTime)
             if elapsedTime.days == 0:
-                days, hours, minutes, seconds = \
-                    self.convert_timedelta(elapsedTime)
                 return u'<div><span>Faltam</span><span class="time">' \
                        u'%s:%s:%s</span><span> para encerrar a votação' \
                        u'</span></div>' % (hours, minutes, seconds)
