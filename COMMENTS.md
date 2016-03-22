@@ -36,3 +36,9 @@ Credenciais
   Admin
     usuário: admin
     senha: qw34rt67
+
+Relatórios
+  Conforme solicitação dos produtores do programa existe os relatórios abaixo:
+    - Total geral de votos: http://<Dominio>/relatorio-paredao/<ID paredão>
+    - Total por participante: http://<Dominio>/relatorio-participante/<ID paredão>/<ID participante>
+    - Total de votos por hora de cada paredão: http://<Dominio>/relatorio-paredoes-hora
