@@ -28,3 +28,11 @@ Tempo restante para votação
 
 Teste de carga
   Utilizando a ferramenta de teste de carga Locust, pois a mesma é em python e não é necessário criar nenhum arquivo de configuração em xml. Nunca tinha tido contato com a ferramenta, mas achei fácil de utilizar e com boa documentação.
+
+Dump da base de dados
+  No projeto possui um dump da base de dados.
+
+Credenciais
+  Admin
+    usuário: admin
+    senha: qw34rt67
