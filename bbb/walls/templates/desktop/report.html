@@ -9,7 +9,7 @@
         {% if msg %}
             <p>{{ msg }}</p>
         {% endif %}
-        {% if wall %}
+        {% if wall and type_report != 'all_votes_participant_per_hour' %}
             <div class="wall">
                 <h1>Paredão</h1>
                 <ul>
@@ -30,6 +30,8 @@
             {% include 'desktop/includes/report_wall.html' %}
         {% elif type_report == 'all_votes_participant' %}
             {% include 'desktop/includes/report_wall_participant.html' %}
+        {% elif type_report == 'all_votes_participant_per_hour' %}
+            {% include 'desktop/includes/report_wall_per_hour.html' %}
         {% endif %}
     </div>
 {% endblock %}

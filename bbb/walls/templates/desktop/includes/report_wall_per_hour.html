@@ -1,0 +1,41 @@
+<div class="report-results-per_hours">
+    {% for wall in walls.walls %}
+        <p>Paredão da semana de: {{ wall.wall.date_start|date:"d/m/Y" }} à {{ wall.wall.date_finish|date:"d/m/Y" }}</p>
+        {% for date_hour in wall.dates %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Participantes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ date_hour.date }}</td>
+                        <td>{{ date_hour.hour }}</td>
+                        <td>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        {% for participant in date_hour.participants %}
+                                            <th>{{ participant.name }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {% for participant in date_hour.participants %}
+                                            <th>{{ participant.votes }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+        {% endfor %}
+    {% endfor %}
+</div>
